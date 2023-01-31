@@ -40,3 +40,7 @@ void Rectangle::render() {
 const std::vector<Point> &Rectangle::getPts() const {
     return pts;
 }
+
+float Rectangle::getWidth() const {
+    return width;
+}

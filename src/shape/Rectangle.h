@@ -8,10 +8,6 @@
 class Rectangle {
 private:
     std::vector<Point> pts;
-public:
-    const std::vector<Point> &getPts() const;
-
-private:
     float height;
     float width;
     Point center;
@@ -28,6 +24,10 @@ public:
     void moveTo(Point pt);
 
     void rotate(float theta, Point center);
+
+    const std::vector<Point> &getPts() const;
+
+    float getWidth() const;
 };
 
 #endif //RM_EMULATOR_RECTANGLE_H

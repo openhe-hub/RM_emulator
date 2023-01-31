@@ -5,6 +5,7 @@
 #include "../object/Buff.h"
 #include "../object/Start.h"
 #include "../object/Base.h"
+#include "../object/Supply.h"
 #include <GL/freeglut.h>
 
 // main render function
@@ -77,27 +78,49 @@ void plotSite() {
 void plotBarriers() {
     // base barriers
     std::vector<PolyLine> barries = {
-            {{{Value::BARRIER_X, -Value::MAP_HEIGHT / 2},
-              {Value::BARRIER_X, -Value::MAP_HEIGHT / 2 + Value::BARRIER_LENGTH},
-              {Value::BARRIER_X + 15, -Value::MAP_HEIGHT / 2 + Value::BARRIER_LENGTH + 15}},
-             {1, 0, 0}},
+            {{{Value::BARRIER_X,      -Value::MAP_HEIGHT / 2},
+                                            {Value::BARRIER_X,                              -Value::MAP_HEIGHT / 2 +
+                                                                                            Value::BARRIER_LENGTH},
+                                                                                                  {Value::BARRIER_X +
+                                                                                                   13,   -Value::MAP_HEIGHT /
+                                                                                                         2 +
+                                                                                                         Value::BARRIER_LENGTH +
+                                                                                                         15}},
+                    {1, 0, 0}},
             {{{-Value::MAP_WIDTH / 2, Value::BARRIER_Y},
-              {-Value::MAP_WIDTH / 2 + Value::BARRIER_LENGTH, Value::BARRIER_Y},
-              {-Value::MAP_WIDTH / 2 + Value::BARRIER_LENGTH + 15, Value::BARRIER_Y + 15}},
-             {1, 0, 0}},
-            {{{-Value::BARRIER_X, Value::MAP_HEIGHT / 2},
-              {-Value::BARRIER_X, Value::MAP_HEIGHT / 2 - Value::BARRIER_LENGTH},
-              {-Value::BARRIER_X - 15, Value::MAP_HEIGHT / 2 - Value::BARRIER_LENGTH - 15}},
-             {0, 0, 1}},
-            {{{Value::MAP_WIDTH / 2, -Value::BARRIER_Y},
-              {Value::MAP_WIDTH / 2 - Value::BARRIER_LENGTH, -Value::BARRIER_Y},
-              {Value::MAP_WIDTH / 2 - Value::BARRIER_LENGTH - 15, -Value::BARRIER_Y - 15}},
-             {0, 0, 1}},
-            {{{-124, -95}, {-109, -80}, {-109, -80 + Value::CENTER_BARRIER_LENGTH},
-              {-94, -65 + Value::CENTER_BARRIER_LENGTH}},
-             {1, 0, 0}},
-            {{{124, 95}, {109, 80}, {109, 80 - Value::CENTER_BARRIER_LENGTH}, {94, 65 - Value::CENTER_BARRIER_LENGTH}},
-             {0, 0, 1}}
+                                            {-Value::MAP_WIDTH / 2 + Value::BARRIER_LENGTH, Value::BARRIER_Y},
+                                                                                                  {-Value::MAP_WIDTH /
+                                                                                                   2 +
+                                                                                                   Value::BARRIER_LENGTH +
+                                                                                                   15,   Value::BARRIER_Y +
+                                                                                                         13}},
+                    {1, 0, 0}},
+            {{{-Value::BARRIER_X,     Value::MAP_HEIGHT / 2},
+                                            {-Value::BARRIER_X,                             Value::MAP_HEIGHT / 2 -
+                                                                                            Value::BARRIER_LENGTH},
+                                                                                                  {-Value::BARRIER_X -
+                                                                                                   13,   Value::MAP_HEIGHT /
+                                                                                                         2 -
+                                                                                                         Value::BARRIER_LENGTH -
+                                                                                                         15}},
+                    {0, 0, 1}},
+            {{{Value::MAP_WIDTH / 2,  -Value::BARRIER_Y},
+                                            {Value::MAP_WIDTH / 2 - Value::BARRIER_LENGTH,  -Value::BARRIER_Y},
+                                                                                                  {Value::MAP_WIDTH /
+                                                                                                   2 -
+                                                                                                   Value::BARRIER_LENGTH -
+                                                                                                   15,   -Value::BARRIER_Y -
+                                                                                                         13}},
+                    {0, 0, 1}},
+            {{{-124,                  -95}, {-111,                                          -82}, {-111, -82 +
+                                                                                                         Value::CENTER_BARRIER_LENGTH},
+                                                                                                                                        {-96, -67 +
+                                                                                                                                              Value::CENTER_BARRIER_LENGTH}},
+                    {1, 0, 0}},
+            {{{124,                   95},  {111,                                           82},  {111,  82 -
+                                                                                                         Value::CENTER_BARRIER_LENGTH}, {96,  67 -
+                                                                                                                                              Value::CENTER_BARRIER_LENGTH}},
+                    {0, 0, 1}}
     };
     for (auto &barrier: barries) {
         barrier.setWidth(10);
@@ -106,13 +129,10 @@ void plotBarriers() {
 }
 
 void plotBuff() {
-    std::vector<Rectangle> supplies = {
-            {Value::SUPPLY_SIZE, Value::SUPPLY_SIZE, {Value::SUPPLY_X,  Value::SUPPLY_Y},  {1, 0, 0}},
-            {Value::SUPPLY_SIZE, Value::SUPPLY_SIZE, {-Value::SUPPLY_X, -Value::SUPPLY_Y}, {0, 0, 1}}
-    };
-    for (auto &supply: supplies) {
-        supply.render();
-    }
+    Supply redSupply(true), blueSupply(false);
+    redSupply.render();
+    blueSupply.render();
+
     Buff buff;
     buff.render();
 }
