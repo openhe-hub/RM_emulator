@@ -28,6 +28,12 @@ public:
     const std::vector<Point> &getPts() const;
 
     float getWidth() const;
+
+    const Color3f &getColor() const;
+
 };
 
 #endif //RM_EMULATOR_RECTANGLE_H
+
+
+

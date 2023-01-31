@@ -44,3 +44,7 @@ const std::vector<Point> &Rectangle::getPts() const {
 float Rectangle::getWidth() const {
     return width;
 }
+
+const Color3f &Rectangle::getColor() const {
+    return color;
+}

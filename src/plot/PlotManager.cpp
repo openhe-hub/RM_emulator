@@ -6,7 +6,10 @@
 #include "../object/Start.h"
 #include "../object/Base.h"
 #include "../object/Supply.h"
+#include "../object/Robot.h"
 #include <GL/freeglut.h>
+#include <cmath>
+#include <unistd.h>
 
 // main render function
 void renderScene();
@@ -24,10 +27,19 @@ void plotBase();
 
 void plotStart();
 
+// test function for robot
+void updateRobot(Robot &robot);
+
+void rotateBody(Robot &robot, float theta);
+
+void rotateGun(Robot &robot, float theta);
+
+void moveBody(Robot &robot, Point pt);
+
 
 void PlotManager::emulate(int argc, char **argv) {
     glutInit(&(argc), argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE);
     glutInitWindowSize(Value::WIDTH, Value::HEIGHT);
     glutInitWindowPosition(Value::DISPLAY_X, Value::DISPLAY_Y);
     glutCreateWindow("RM Emulator");
@@ -37,7 +49,17 @@ void PlotManager::emulate(int argc, char **argv) {
 
 // main render function
 void renderScene() {
+    //init
     plotMap();
+    Robot robot(RobotType::TYPE_SENTRY, RobotOwner::OWNER_RED);
+    robot.render();
+    glutSwapBuffers();
+    //rotate
+    rotateBody(robot, M_PI_2);
+    moveBody(robot, {0, 300});
+    rotateBody(robot, -M_PI / 5 * 3);
+    moveBody(robot, {500, -180});
+    rotateGun(robot, -M_PI / 10+M_PI_2);
 }
 
 // static map
@@ -47,8 +69,6 @@ void plotMap() {
     plotBase();
     plotBuff();
     plotStart();
-
-    glutSwapBuffers();
 }
 
 void plotSite() {
@@ -114,12 +134,11 @@ void plotBarriers() {
                     {0, 0, 1}},
             {{{-124,                  -95}, {-111,                                          -82}, {-111, -82 +
                                                                                                          Value::CENTER_BARRIER_LENGTH},
-                                                                                                                                        {-96, -67 +
-                                                                                                                                              Value::CENTER_BARRIER_LENGTH}},
+                     {-96, -67 + Value::CENTER_BARRIER_LENGTH}},
                     {1, 0, 0}},
             {{{124,                   95},  {111,                                           82},  {111,  82 -
-                                                                                                         Value::CENTER_BARRIER_LENGTH}, {96,  67 -
-                                                                                                                                              Value::CENTER_BARRIER_LENGTH}},
+                                                                                                         Value::CENTER_BARRIER_LENGTH},
+                     {96,  67 - Value::CENTER_BARRIER_LENGTH}},
                     {0, 0, 1}}
     };
     for (auto &barrier: barries) {
@@ -147,6 +166,40 @@ void plotStart() {
     Start start1(true), start2(false);
     start1.render();
     start2.render();
+}
+
+// robot movement test
+void updateRobot(Robot &robot) {
+    plotMap();
+    robot.render();
+    glutSwapBuffers();
+}
+
+void rotateBody(Robot &robot, float theta) {
+    for (int i = 0; i < 100; ++i) {
+        robot.rotateBody(theta / 100);
+        updateRobot(robot);
+        usleep(5000);
+    }
+}
+
+void rotateGun(Robot &robot, float theta) {
+    for (int i = 0; i < 100; ++i) {
+        robot.rotateGun(theta / 100);
+        updateRobot(robot);
+        usleep(5000);
+    }
+}
+
+void moveBody(Robot &robot, Point pt) {
+    int num = fmax(pt.getX(), pt.getY()) / Value::DELTA_DIS;
+    float dx = pt.getX() / num;
+    float dy = pt.getY() / num;
+    for (int i = 0; i < num; ++i) {
+        robot.move({dx, dy});
+        updateRobot(robot);
+        usleep(5000);
+    }
 }
 
 

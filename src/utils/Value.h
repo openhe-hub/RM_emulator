@@ -38,6 +38,15 @@ public:
     constexpr static float BARRIER_X = -236.23;
     constexpr static float BARRIER_Y = -84.4;
 
+    // optical label
+    constexpr static float LABEL_SIZE = 12;
+
+    // robot
+    constexpr static float SENTRY_WIDTH = 48;
+    constexpr static float SENTRY_HEIGHT = 36;
+    constexpr static float GUN_LENGTH = 40;
+    constexpr static float GUN_WIDTH = 2;
+    constexpr static float DELTA_DIS = 1;
 
     // display
     constexpr static float DISPLAY_X = 100.;
