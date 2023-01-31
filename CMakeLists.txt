@@ -3,4 +3,10 @@ project(RM_Emulator)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(RM_Emulator main.cpp)
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+include_directories(${OpenGL_INCLUDE_DIR})
+include_directories(${GLUT_INCLUDE_DIR})
+
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARY} ${GLUT_LIBRARY})
