@@ -9,7 +9,9 @@ class Line {
 private:
     std::vector<Point> pts;
     Color3f color;
+    int width;
 public:
+    void setWidth(int width);
     Line(Point p1, Point p2, Color3f color);
     void render();
 };

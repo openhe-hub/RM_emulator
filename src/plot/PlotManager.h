@@ -2,7 +2,7 @@
 #define RM_EMULATOR_PLOTMANAGER_H
 
 class PlotManager {
-private:
+public:
     void emulate(int argc, char **argv);
 };
 

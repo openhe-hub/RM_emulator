@@ -51,3 +51,8 @@ Point Point::operator+(Point point) {
 Point Point::operator-(Point point) {
     return {this->x - point.getX(), this->y - point.getY()};
 }
+
+Point Point::mid(Point point1, Point point2) {
+    return {(point1.getX() + point2.getX()) / 2, (point1.getY()+ point2.getY()) / 2};
+}
+

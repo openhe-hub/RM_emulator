@@ -10,6 +10,8 @@ private:
     std::vector<Point> pts;
     Color3f color;
 public:
+    Polygon() {}
+
     Polygon(std::vector<Point> pts, Color3f color);
 
     void render();

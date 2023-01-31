@@ -1,5 +1,7 @@
 #include "Rectangle.h"
+#include "../utils/Value.h"
 #include <GL/freeglut.h>
+#include <iostream>
 
 Rectangle::Rectangle(float height, float width, Point center, Color3f color)
         : height(height), width(width), center(center), color(color) {
@@ -30,7 +32,11 @@ void Rectangle::render() {
     glColor3f(color.r(), color.g(), color.b());
     glBegin(GL_POLYGON);
     for (int i = 0; i < 4; ++i) {
-        glVertex2f(pts[i].getX(), pts[i].getY());
+        glVertex2f(pts[i].getX() / Value::SCALE_WIDTH, pts[i].getY() / Value::SCALE_HEIGHT);
     }
     glEnd();
+}
+
+const std::vector<Point> &Rectangle::getPts() const {
+    return pts;
 }

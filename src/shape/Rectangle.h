@@ -8,11 +8,17 @@
 class Rectangle {
 private:
     std::vector<Point> pts;
+public:
+    const std::vector<Point> &getPts() const;
+
+private:
     float height;
     float width;
     Point center;
     Color3f color;
 public:
+    Rectangle(){}
+
     Rectangle(float height, float width, Point center,Color3f color);
 
     void render();

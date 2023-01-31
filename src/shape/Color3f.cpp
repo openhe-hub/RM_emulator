@@ -23,3 +23,9 @@ float Color3f::g() {
 float Color3f::b() {
     return color[2];
 }
+
+Color3f::Color3f(float r, float g, float b) {
+    color.push_back(r);
+    color.push_back(g);
+    color.push_back(b);
+}
