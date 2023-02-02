@@ -40,6 +40,8 @@ public:
     void move(Point point);
 
     void moveTo(Point destination);
+
+    void info();
 };
 
 #endif //RM_EMULATOR_ROBOT_H

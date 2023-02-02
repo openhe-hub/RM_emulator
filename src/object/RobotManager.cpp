@@ -1,4 +1,7 @@
+#include <iostream>
+#include <GL/glut.h>
 #include "RobotManager.h"
+#include "../utils/Utils.h"
 
 void RobotManager::initAll() {
     robots = {
@@ -9,20 +12,50 @@ void RobotManager::initAll() {
             {RobotType::TYPE_HERO,     RobotOwner::OWNER_BLUE, 5},
             {RobotType::TYPE_INFANTRY, RobotOwner::OWNER_BLUE, 6},
     };
+    isBegin = true;
 }
 
 void RobotManager::renderAll() {
+    if (!isBegin) initAll();
     for (auto &robot: robots) {
         robot.render();
     }
+    glutSwapBuffers();
 }
 
-void RobotManager::updateRobot(int id, float x, float y) {
-
+void RobotManager::reportAll() {
+    if (!isBegin) initAll();
+    for (auto &robot: robots) {
+        robot.info();
+    }
+    std::cout << "============" << std::endl;
 }
 
-void RobotManager::removeRobot(int id) {
-
+void RobotManager::updateRobot(RobotType type, RobotOwner owner, Point coordination) {
+    robots[Utils::toId(type, owner)].moveTo(coordination);
 }
+
+void RobotManager::removeRobot(RobotType type, RobotOwner owner) {
+    robots.erase(robots.begin() + Utils::toId(type, owner));
+}
+
+void RobotManager::moveRobot(RobotType type, RobotOwner owner, Point vec) {
+    robots[Utils::toId(type, owner)].move(vec);
+}
+
+void RobotManager::rotateRobotBody(RobotType type, RobotOwner owner, float theta) {
+    robots[Utils::toId(type, owner)].rotateBody(theta);
+}
+
+void RobotManager::rotateRobotGun(RobotType type, RobotOwner owner, float theta) {
+    robots[Utils::toId(type, owner)].rotateGun(theta);
+}
+
+void RobotManager::fireRobot(RobotType type, RobotOwner owner) {
+    robots[Utils::toId(type, owner)].shot();
+}
+
+
+
 
 

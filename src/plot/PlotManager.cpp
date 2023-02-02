@@ -9,13 +9,10 @@
 #include "../object/Robot.h"
 #include "../object/RobotManager.h"
 #include <GL/freeglut.h>
-#include <cmath>
-#include <unistd.h>
+#include <iostream>
 
 // main render function
 void renderScene();
-
-void renderSceneTest();
 
 // static map
 void plotMap();
@@ -30,15 +27,6 @@ void plotBase();
 
 void plotStart();
 
-// test function for robot
-void updateRobot(Robot &robot);
-
-void rotateBody(Robot &robot, float theta);
-
-void rotateGun(Robot &robot, float theta);
-
-void moveBody(Robot &robot, Point pt);
-
 
 void PlotManager::emulate(int argc, char **argv) {
     glutInit(&(argc), argv);
@@ -46,31 +34,21 @@ void PlotManager::emulate(int argc, char **argv) {
     glutInitWindowSize(Value::WIDTH, Value::HEIGHT);
     glutInitWindowPosition(Value::DISPLAY_X, Value::DISPLAY_Y);
     glutCreateWindow("RM Emulator");
-    glutDisplayFunc(renderSceneTest);
+    glutDisplayFunc(renderScene);
     glutMainLoop();
 }
 
-void renderSceneTest() {
-    RobotManager &robotManager = RobotManager::getInstance();
-    plotMap();
-    robotManager.initAll();
-    robotManager.renderAll();
-    glutSwapBuffers();
-}
-
-// main render function
 void renderScene() {
-    //init
-    plotMap();
-    Robot robot(RobotType::TYPE_SENTRY, RobotOwner::OWNER_RED, 1);
-    robot.render();
-    glutSwapBuffers();
-    //rotate
-    rotateBody(robot, M_PI_2);
-    moveBody(robot, {0, 300});
-    rotateBody(robot, -M_PI / 5 * 3);
-    moveBody(robot, {500, -180});
-    rotateGun(robot, -M_PI / 10 + M_PI_2);
+    while (true) {
+        RobotManager &robotManager = RobotManager::getInstance();
+        robotManager.reportAll();
+
+        plotMap();
+        robotManager.moveRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, {1, 0});
+        robotManager.rotateRobotGun(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, 0.01);
+        robotManager.rotateRobotBody(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, -0.01);
+        robotManager.renderAll();
+    }
 }
 
 // static map
@@ -177,40 +155,6 @@ void plotStart() {
     Start start1(true), start2(false);
     start1.render();
     start2.render();
-}
-
-// robot movement test
-void updateRobot(Robot &robot) {
-    plotMap();
-    robot.render();
-    glutSwapBuffers();
-}
-
-void rotateBody(Robot &robot, float theta) {
-    for (int i = 0; i < 100; ++i) {
-        robot.rotateBody(theta / 100);
-        updateRobot(robot);
-        usleep(5000);
-    }
-}
-
-void rotateGun(Robot &robot, float theta) {
-    for (int i = 0; i < 100; ++i) {
-        robot.rotateGun(theta / 100);
-        updateRobot(robot);
-        usleep(5000);
-    }
-}
-
-void moveBody(Robot &robot, Point pt) {
-    int num = fmax(pt.getX(), pt.getY()) / Value::DELTA_DIS;
-    float dx = pt.getX() / num;
-    float dy = pt.getY() / num;
-    for (int i = 0; i < num; ++i) {
-        robot.move({dx, dy});
-        updateRobot(robot);
-        usleep(5000);
-    }
 }
 
 

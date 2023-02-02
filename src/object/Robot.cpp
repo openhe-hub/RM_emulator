@@ -4,6 +4,7 @@
 #include "../utils/Value.h"
 #include "../utils/Utils.h"
 #include <iostream>
+#include <iomanip>
 
 Robot::Robot(RobotType type, RobotOwner owner, int id)
         : type(type), owner(owner), id(id), bodyTheta(0.0), gunTheta(0.0) {
@@ -64,6 +65,20 @@ void Robot::moveTo(Point destination) {
     body.moveTo(destination);
     gun.moveTo(destination);
     center.moveTo(destination.getX(), destination.getY());
+}
+
+void Robot::info() {
+    std::string text[6] = {"[RED INFANTRY]", "[RED HERO]", "[RED SENTRY]",
+                           "[BLUE INFANTRY]", "[BLUE HERO]", "[BLUE SENTRY]"};
+    std::cout.setf(std::ios::left);
+    std::cout << std::setw(20) << std::setfill(' ')
+              << text[id - 1] << "\t";
+    std::cout << "( x = " << std::setw(6) << std::setfill(' ') << center.getX()
+              << ", y = " << std::setw(6) << std::setfill(' ') << center.getY() << " )" << "\t\t";
+    std::cout
+            << "hp = " << std::setw(6) << std::setfill(' ') << hp << "\t\t"
+            << std::setw(6) << std::setfill(' ') << "energy = " << energy << "\t";
+    std::cout << std::endl;
 }
 
 
