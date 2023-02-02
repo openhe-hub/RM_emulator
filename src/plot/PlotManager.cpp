@@ -7,12 +7,15 @@
 #include "../object/Base.h"
 #include "../object/Supply.h"
 #include "../object/Robot.h"
+#include "../object/RobotManager.h"
 #include <GL/freeglut.h>
 #include <cmath>
 #include <unistd.h>
 
 // main render function
 void renderScene();
+
+void renderSceneTest();
 
 // static map
 void plotMap();
@@ -43,15 +46,23 @@ void PlotManager::emulate(int argc, char **argv) {
     glutInitWindowSize(Value::WIDTH, Value::HEIGHT);
     glutInitWindowPosition(Value::DISPLAY_X, Value::DISPLAY_Y);
     glutCreateWindow("RM Emulator");
-    glutDisplayFunc(renderScene);
+    glutDisplayFunc(renderSceneTest);
     glutMainLoop();
+}
+
+void renderSceneTest() {
+    RobotManager &robotManager = RobotManager::getInstance();
+    plotMap();
+    robotManager.initAll();
+    robotManager.renderAll();
+    glutSwapBuffers();
 }
 
 // main render function
 void renderScene() {
     //init
     plotMap();
-    Robot robot(RobotType::TYPE_SENTRY, RobotOwner::OWNER_RED);
+    Robot robot(RobotType::TYPE_SENTRY, RobotOwner::OWNER_RED, 1);
     robot.render();
     glutSwapBuffers();
     //rotate
@@ -59,7 +70,7 @@ void renderScene() {
     moveBody(robot, {0, 300});
     rotateBody(robot, -M_PI / 5 * 3);
     moveBody(robot, {500, -180});
-    rotateGun(robot, -M_PI / 10+M_PI_2);
+    rotateGun(robot, -M_PI / 10 + M_PI_2);
 }
 
 // static map

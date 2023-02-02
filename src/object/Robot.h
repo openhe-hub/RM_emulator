@@ -19,12 +19,15 @@ private:
     Rectangle gun;
     Point center;
 
+    int id;
     int hp;
     int energy;
     int bulletCount;
     float gunTheta, bodyTheta;
 public:
-    Robot(RobotType type,RobotOwner owner);
+    Robot(){}
+
+    Robot(RobotType type,RobotOwner owner,int id);
 
     void render();
 

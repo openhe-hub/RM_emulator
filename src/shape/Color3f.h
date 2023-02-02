@@ -22,6 +22,15 @@ public:
     float g();
 
     float b();
+
+    static Color3f red();
+    static Color3f blue();
+    static Color3f redInfantry();
+    static Color3f redHero();
+    static Color3f redSentry();
+    static Color3f blueInfantry();
+    static Color3f blueHero();
+    static Color3f blueSentry();
 };
 
 #endif //RM_EMULATOR_COLOR3F_H

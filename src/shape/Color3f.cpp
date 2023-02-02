@@ -29,3 +29,35 @@ Color3f::Color3f(float r, float g, float b) {
     color.push_back(g);
     color.push_back(b);
 }
+
+Color3f Color3f::red() {
+    return {1, 0, 0};
+}
+
+Color3f Color3f::blue() {
+    return {0, 0, 1};
+}
+
+Color3f Color3f::redInfantry() {
+    return {0.6, 0, 0};
+}
+
+Color3f Color3f::redHero() {
+    return {0.8, 0.2, 0.5};
+}
+
+Color3f Color3f::redSentry() {
+    return red();
+}
+
+Color3f Color3f::blueInfantry() {
+    return {0.2, 0.5, 0.5};
+}
+
+Color3f Color3f::blueHero() {
+    return {0, 0.7, 0.7};
+}
+
+Color3f Color3f::blueSentry() {
+    return blue();
+}
