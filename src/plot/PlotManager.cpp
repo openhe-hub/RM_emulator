@@ -14,6 +14,8 @@
 // main render function
 void renderScene();
 
+void timerCallback(int id);
+
 // static map
 void plotMap();
 
@@ -35,20 +37,24 @@ void PlotManager::emulate(int argc, char **argv) {
     glutInitWindowPosition(Value::DISPLAY_X, Value::DISPLAY_Y);
     glutCreateWindow("RM Emulator");
     glutDisplayFunc(renderScene);
+    glutTimerFunc(10, timerCallback, 1);
     glutMainLoop();
 }
 
-void renderScene() {
-    while (true) {
-        RobotManager &robotManager = RobotManager::getInstance();
-        robotManager.reportAll();
+void timerCallback(int id) {
+    RobotManager &robotManager = RobotManager::getInstance();
+//    robotManager.reportAll();
+    plotMap();
+    robotManager.renderAll();
+    glutPostRedisplay();
+    glutTimerFunc(10, timerCallback, 1);
+}
 
-        plotMap();
-        robotManager.moveRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, {1, 0});
-        robotManager.rotateRobotGun(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, 0.01);
-        robotManager.rotateRobotBody(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, -0.01);
-        robotManager.renderAll();
-    }
+void renderScene() {
+//    RobotManager &robotManager = RobotManager::getInstance();
+//    robotManager.reportAll();
+//    plotMap();
+//    robotManager.renderAll();
 }
 
 // static map

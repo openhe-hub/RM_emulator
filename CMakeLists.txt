@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.23)
 project(RM_Emulator)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS -pthread)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
