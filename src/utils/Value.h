@@ -49,6 +49,10 @@ public:
     constexpr static float GUN_WIDTH = 2;
     constexpr static float DELTA_DIS = 1;
 
+    // bullet
+    constexpr static float BULLET_RADIUS=3;
+    constexpr static float BULLET_VELOCITY=15;
+
     // display
     constexpr static float DISPLAY_X = 100.;
     constexpr static float DISPLAY_Y = 100.;

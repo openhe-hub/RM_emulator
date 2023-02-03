@@ -6,6 +6,7 @@ private:
     bool isRed;
     Rectangle region;
 public:
+    Supply(){}
     Supply(bool isRed);
     void render();
 };

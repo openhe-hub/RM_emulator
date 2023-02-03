@@ -33,7 +33,7 @@ public:
 
     void render();
 
-    void shot();
+    std::pair<Point,float> shot();
 
     void rotateGun(float theta);
 

@@ -12,19 +12,26 @@ void RobotManager::initAll() {
             {RobotType::TYPE_HERO,     RobotOwner::OWNER_BLUE, 5},
             {RobotType::TYPE_INFANTRY, RobotOwner::OWNER_BLUE, 6},
     };
+    redBase = {true}, blueBase = {false};
+    redSupply = {true}, blueSupply = {false};
     isBegin = true;
     time(&start);
 }
 
 void RobotManager::renderAll() {
     if (!isBegin) initAll();
+    // render robots
     for (auto &robot: robots) {
         robot.render();
     }
+    // render bullets
+    bullet.render();
     glutSwapBuffers();
 }
 
 void RobotManager::reportAll() {
+    if (!isBegin) initAll();
+
     time(&curr);
     double diff = difftime(curr, start);
     std::cout << "===================================[ " << diff
@@ -58,7 +65,9 @@ void RobotManager::rotateRobotGun(RobotType type, RobotOwner owner, float theta)
 }
 
 void RobotManager::fireRobot(RobotType type, RobotOwner owner) {
-    robots[Utils::toId(type, owner)].shot();
+    int id = Utils::toId(type, owner);
+    std::pair<Point, float> fireInfo = robots[id].shot();
+    bullet.addBullet(fireInfo.first, fireInfo.second);
 }
 
 

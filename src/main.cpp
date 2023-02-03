@@ -14,7 +14,8 @@ int main(int argc, char *argv[]) {
     std::thread updateThread([] {
         while (true) {
             RobotManager &robotManager = RobotManager::getInstance();
-            robotManager.moveRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, {1, 1});
+            robotManager.rotateRobotGun(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, 0.1);
+            robotManager.fireRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED);
             robotManager.reportAll();
             sleep(1);
         }

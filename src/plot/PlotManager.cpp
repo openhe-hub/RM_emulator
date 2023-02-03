@@ -43,7 +43,6 @@ void PlotManager::emulate(int argc, char **argv) {
 
 void timerCallback(int id) {
     RobotManager &robotManager = RobotManager::getInstance();
-//    robotManager.reportAll();
     plotMap();
     robotManager.renderAll();
     glutPostRedisplay();
@@ -51,10 +50,6 @@ void timerCallback(int id) {
 }
 
 void renderScene() {
-//    RobotManager &robotManager = RobotManager::getInstance();
-//    robotManager.reportAll();
-//    plotMap();
-//    robotManager.renderAll();
 }
 
 // static map

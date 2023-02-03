@@ -51,8 +51,12 @@ void Robot::render() {
     gun.render();
 }
 
-void Robot::shot() {
-
+// return fire place & gun theta
+std::pair<Point, float> Robot::shot() {
+    std::pair<Point, float> ret;
+    ret.first = gun.getCenter();
+    ret.second = gunTheta;
+    return ret;
 }
 
 void Robot::rotateGun(float theta) {

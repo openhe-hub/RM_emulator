@@ -9,6 +9,7 @@ private:
     int hp;
     bool isRed;
 public:
+    Base(){}
     Base(bool isRed);
 
     void render();
