@@ -6,6 +6,7 @@ public:
     // map
     // real size(m)*scale = emulator size(px), scale=80
     // emulator size(px)/SCALE_HEIGHT or SCALE_WIDTH = OpenGL Sys
+    constexpr static float SCALE = 80;
     constexpr static float MAP_WIDTH = 960.;
     constexpr static float MAP_HEIGHT = 640.;
     constexpr static float BOARDER_SIZE = 20.;

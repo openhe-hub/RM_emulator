@@ -14,9 +14,9 @@ int main(int argc, char *argv[]) {
     std::thread updateThread([] {
         while (true) {
             RobotManager &robotManager = RobotManager::getInstance();
-            robotManager.moveRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, {5, 0});
+            robotManager.moveRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, {1, 0});
             robotManager.reportAll();
-            usleep(100000);
+            sleep(1);
         }
     });
     plotThread.join();

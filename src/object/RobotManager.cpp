@@ -28,11 +28,11 @@ void RobotManager::reportAll() {
     for (auto &robot: robots) {
         robot.info();
     }
-    std::cout << "============" << std::endl;
+    std::cout << "======================================================================================" << std::endl;
 }
 
 void RobotManager::updateRobot(RobotType type, RobotOwner owner, Point coordination) {
-    robots[Utils::toId(type, owner)].moveTo(coordination);
+    robots[Utils::toId(type, owner)].moveTo({Utils::toPx(coordination.getX()),Utils::toPx(coordination.getY())});
 }
 
 void RobotManager::removeRobot(RobotType type, RobotOwner owner) {
@@ -40,7 +40,7 @@ void RobotManager::removeRobot(RobotType type, RobotOwner owner) {
 }
 
 void RobotManager::moveRobot(RobotType type, RobotOwner owner, Point vec) {
-    robots[Utils::toId(type, owner)].move(vec);
+    robots[Utils::toId(type, owner)].move({Utils::toPx(vec.getX()),Utils::toPx(vec.getY())});
 }
 
 void RobotManager::rotateRobotBody(RobotType type, RobotOwner owner, float theta) {

@@ -8,6 +8,7 @@
 
 Robot::Robot(RobotType type, RobotOwner owner, int id)
         : type(type), owner(owner), id(id), bodyTheta(0.0), gunTheta(0.0) {
+    // color
     std::vector<Color3f> colors = {
             Color3f::redInfantry(),
             Color3f::redHero(),
@@ -17,13 +18,21 @@ Robot::Robot(RobotType type, RobotOwner owner, int id)
             Color3f::blueSentry()
     };
     Color3f color = colors[Utils::toId(type, owner)];
+
     // start point
     const float ROBOT_START_X[3] = {-420, -340, -236}; // infantry, hero, sentry
-    const float ROBOT_START_Y[3] = {-130, -130, -40};  // infantry, hero, sentry
+    const float ROBOT_START_Y[3] = {-130, -130, -40};
     float sign = owner == RobotOwner::OWNER_RED ? 1 : -1;
     center = {ROBOT_START_X[static_cast<int>(type) - 1] * sign,
               ROBOT_START_Y[static_cast<int>(type) - 1] * sign};
-    //
+
+    // hp
+    const int ROBOT_HP[3] = {100, 150, 600}; // sentry
+    hp = ROBOT_HP[static_cast<int>(type) - 1];
+    // exp
+    const int ROBOT_EXP[3] = {25, 75, 75};
+    exp = ROBOT_EXP[static_cast<int>(type) - 1];
+    // shape
     body = {Value::SENTRY_HEIGHT, Value::SENTRY_WIDTH, center,
             color};
     gun = {Value::GUN_WIDTH, Value::GUN_LENGTH, {center.getX() + Value::GUN_LENGTH / 2 * sign, center.getY()},
@@ -77,7 +86,7 @@ void Robot::info() {
               << ", y = " << std::setw(6) << std::setfill(' ') << center.getY() << " )" << "\t\t";
     std::cout
             << "hp = " << std::setw(6) << std::setfill(' ') << hp << "\t\t"
-            << std::setw(6) << std::setfill(' ') << "energy = " << energy << "\t";
+            << std::setw(6) << std::setfill(' ') << "exp = " << exp << "\t";
     std::cout << std::endl;
 }
 

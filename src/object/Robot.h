@@ -21,8 +21,9 @@ private:
 
     int id;
     int hp;
-    int energy;
-    int bulletCount;
+    int exp;
+//    int energy;
+//    int bulletCount;
     float gunTheta, bodyTheta;
 public:
     Robot(){}
