@@ -22,6 +22,7 @@ private:
     int id;
     int hp;
     int exp;
+    int level;
 //    int energy;
 //    int bulletCount;
     float gunTheta, bodyTheta;

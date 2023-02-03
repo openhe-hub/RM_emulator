@@ -1,11 +1,13 @@
 #ifndef RM_EMULATOR_ROBOTMANAGER_H
 #define RM_EMULATOR_ROBOTMANAGER_H
 #include "Robot.h"
+#include <ctime>
 
 class RobotManager{
 private:
     std::vector<Robot> robots;
     bool isBegin= false;
+    time_t start=0,curr=0;
     RobotManager()=default;
     ~RobotManager()=default;
 public:

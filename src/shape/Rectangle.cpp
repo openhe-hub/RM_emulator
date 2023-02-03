@@ -16,6 +16,7 @@ void Rectangle::move(Point dis) {
     for (int i = 0; i < 4; ++i) {
         pts[i] = pts[i] + dis;
     }
+    center=center+dis;
 }
 
 void Rectangle::moveTo(Point pt) {
@@ -47,4 +48,8 @@ float Rectangle::getWidth() const {
 
 const Color3f &Rectangle::getColor() const {
     return color;
+}
+
+const Point &Rectangle::getCenter() const {
+    return center;
 }

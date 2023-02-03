@@ -31,6 +31,7 @@ public:
 
     const Color3f &getColor() const;
 
+    const Point &getCenter() const;
 };
 
 #endif //RM_EMULATOR_RECTANGLE_H

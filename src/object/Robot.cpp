@@ -1,5 +1,4 @@
 #include "Robot.h"
-#include "../shape/Rectangle.h"
 #include "../shape/PolyLine.h"
 #include "../utils/Value.h"
 #include "../utils/Utils.h"
@@ -32,6 +31,8 @@ Robot::Robot(RobotType type, RobotOwner owner, int id)
     // exp
     const int ROBOT_EXP[3] = {25, 75, 75};
     exp = ROBOT_EXP[static_cast<int>(type) - 1];
+    // level
+    level = 1;
     // shape
     body = {Value::SENTRY_HEIGHT, Value::SENTRY_WIDTH, center,
             color};
@@ -71,8 +72,8 @@ void Robot::move(Point point) {
 }
 
 void Robot::moveTo(Point destination) {
+    gun.moveTo(destination + gun.getCenter() - body.getCenter());
     body.moveTo(destination);
-    gun.moveTo(destination);
     center.moveTo(destination.getX(), destination.getY());
 }
 
@@ -86,7 +87,8 @@ void Robot::info() {
               << ", y = " << std::setw(6) << std::setfill(' ') << center.getY() << " )" << "\t\t";
     std::cout
             << "hp = " << std::setw(6) << std::setfill(' ') << hp << "\t\t"
-            << std::setw(6) << std::setfill(' ') << "exp = " << exp << "\t";
+            << std::setw(6) << std::setfill(' ') << "exp = " << exp << "\t\t"
+            << std::setw(6) << std::setfill(' ') << "level = " << level << "\t";
     std::cout << std::endl;
 }
 

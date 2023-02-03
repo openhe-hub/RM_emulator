@@ -13,6 +13,7 @@ void RobotManager::initAll() {
             {RobotType::TYPE_INFANTRY, RobotOwner::OWNER_BLUE, 6},
     };
     isBegin = true;
+    time(&start);
 }
 
 void RobotManager::renderAll() {
@@ -24,15 +25,20 @@ void RobotManager::renderAll() {
 }
 
 void RobotManager::reportAll() {
+    time(&curr);
+    double diff = difftime(curr, start);
+    std::cout << "===================================[ " << diff
+              << " s ]===================================================\n";
     if (!isBegin) initAll();
     for (auto &robot: robots) {
         robot.info();
     }
-    std::cout << "======================================================================================" << std::endl;
+    std::cout << "========================================================"
+                 "=====================================\n\n";
 }
 
 void RobotManager::updateRobot(RobotType type, RobotOwner owner, Point coordination) {
-    robots[Utils::toId(type, owner)].moveTo({Utils::toPx(coordination.getX()),Utils::toPx(coordination.getY())});
+    robots[Utils::toId(type, owner)].moveTo({Utils::toPx(coordination.getX()), Utils::toPx(coordination.getY())});
 }
 
 void RobotManager::removeRobot(RobotType type, RobotOwner owner) {
@@ -40,7 +46,7 @@ void RobotManager::removeRobot(RobotType type, RobotOwner owner) {
 }
 
 void RobotManager::moveRobot(RobotType type, RobotOwner owner, Point vec) {
-    robots[Utils::toId(type, owner)].move({Utils::toPx(vec.getX()),Utils::toPx(vec.getY())});
+    robots[Utils::toId(type, owner)].move({Utils::toPx(vec.getX()), Utils::toPx(vec.getY())});
 }
 
 void RobotManager::rotateRobotBody(RobotType type, RobotOwner owner, float theta) {
