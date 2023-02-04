@@ -9,6 +9,7 @@ private:
     Point center;
     Color3f color;
 public:
+    Circle(){}
     Circle(float radius,Point center,Color3f color);
     void render();
     void move(Point vec);

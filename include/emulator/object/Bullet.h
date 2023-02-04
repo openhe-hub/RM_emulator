@@ -1,15 +1,25 @@
 #ifndef RM_EMULATOR_BULLET_H
 #define RM_EMULATOR_BULLET_H
-#include <vector>
-#include "emulator/shape/Circle.h"
 
-class Bullet{
+#include "emulator/shape/Circle.h"
+#include "Robot.h"
+#include "emulator/utils/Value.h"
+
+class Bullet {
 private:
-    std::vector<Circle> bullets;
-    std::vector<float> orientation;
+    Circle circle;
+//    RobotOwner owner;
+//    BulletType type;
+    float theta;
+    int attackValue;
 public:
-    void addBullet(Point center,float theta);
+    Bullet(Point point, float theta);
+
     void render();
-    void update();
+
+    void move(Point vec);
+
+    float getTheta() const;
 };
+
 #endif //RM_EMULATOR_BULLET_H

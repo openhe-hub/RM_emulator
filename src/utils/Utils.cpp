@@ -19,3 +19,11 @@ bool Utils::testCollision(Point point) {
     }
     return true;
 }
+
+bool Utils::testBulletOnTarget(Bullet bullet, std::vector<Robot> robots) {
+    return false;
+}
+
+bool Utils::testBulletOnBase(Bullet bullet, Base base) {
+    return false;
+}

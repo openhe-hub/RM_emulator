@@ -1,7 +1,7 @@
 #ifndef RM_EMULATOR_ROBOTMANAGER_H
 #define RM_EMULATOR_ROBOTMANAGER_H
 #include "Robot.h"
-#include "Bullet.h"
+#include "BulletManager.h"
 #include "Base.h"
 #include "Buff.h"
 #include "Supply.h"
@@ -10,7 +10,7 @@
 class RobotManager{
 private:
     std::vector<Robot> robots;
-    Bullet bullet;
+    BulletManager bullet;
     Supply redSupply,blueSupply;
     Buff buff;
     Base redBase,blueBase;
