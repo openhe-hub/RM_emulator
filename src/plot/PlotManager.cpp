@@ -7,7 +7,7 @@
 #include "emulator/object/Base.h"
 #include "emulator/object/Supply.h"
 #include "emulator/object/Robot.h"
-#include "emulator/object/RobotManager.h"
+#include "emulator/management/RobotManager.h"
 #include <GL/freeglut.h>
 #include <iostream>
 
