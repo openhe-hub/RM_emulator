@@ -2,6 +2,7 @@
 #include "emulator/management/RobotManager.h"
 #include <unistd.h>
 #include <thread>
+#include <cmath>
 
 
 int main(int argc, char *argv[]) {
@@ -11,9 +12,10 @@ int main(int argc, char *argv[]) {
         PlotManager plotManager;
         plotManager.emulate(argc, argv);
     });
-    std::thread updateThread([] {
+    std::thread updateThread([&robotManager] {
+        robotManager.updateRobot(2, {5, 0});
+//        robotManager.rotateRobotGun(2, 1.1);
         while (true) {
-            RobotManager &robotManager = RobotManager::getInstance();
             robotManager.rotateRobotGun(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, 0.1);
             robotManager.fireRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED);
             robotManager.reportAll();

@@ -17,3 +17,7 @@ float Bullet::getTheta() const {
     return theta;
 }
 
+Point Bullet::getCenter() {
+    return circle.getCenter();
+}
+

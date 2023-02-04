@@ -19,3 +19,7 @@ Circle::Circle(float radius, Point center, Color3f color)
 void Circle::move(Point vec) {
     center = center + vec;
 }
+
+const Point &Circle::getCenter() const {
+    return center;
+}

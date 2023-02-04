@@ -12,11 +12,21 @@ public:
 
     static float toPx(float meter);
 
-    bool testBulletOnTarget(Bullet bullet, std::vector<Robot> robots);
+    static bool isNearX(float x, float targetX);
 
-    bool testBulletOnBase(Bullet bullet, Base base);
+    static bool isNearY(float y, float targetY);
 
-    bool testCollision(Point point);
+    static bool isNearPoint(Point point, Point targetPoint);
+
+    static bool isInRange(float x, float min, float max);
+
+    static bool testBulletOnTarget(Bullet bullet, std::vector<Robot> robots);
+
+    static bool testBulletOnBase(Bullet bullet, Base base);
+
+    static bool testBulletCollision(Bullet bullet);
+
+    static bool testRobotCollision(Robot robot);
 };
 
 #endif //RM_EMULATOR_UTILS_H

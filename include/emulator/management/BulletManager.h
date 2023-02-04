@@ -7,9 +7,11 @@
 class BulletManager{
 private:
     std::vector<Bullet> bullets;
+    void removeBullet();
+    void update();
 public:
     void addBullet(Point center,float theta);
     void render();
-    void update();
+
 };
 #endif //RM_EMULATOR_BULLETMANAGER_H

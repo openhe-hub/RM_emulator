@@ -51,7 +51,8 @@ public:
 
     // bullet
     constexpr static float BULLET_RADIUS=3;
-    constexpr static float BULLET_VELOCITY=15;
+    constexpr static float BULLET_VELOCITY=8;
+    constexpr static float TARGET_DIFF_DIS=5;
 
     // display
     constexpr static float DISPLAY_X = 100.;

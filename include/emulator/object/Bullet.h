@@ -20,6 +20,8 @@ public:
     void move(Point vec);
 
     float getTheta() const;
+
+    Point getCenter();
 };
 
 #endif //RM_EMULATOR_BULLET_H

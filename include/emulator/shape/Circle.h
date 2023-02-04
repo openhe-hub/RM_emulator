@@ -13,5 +13,7 @@ public:
     Circle(float radius,Point center,Color3f color);
     void render();
     void move(Point vec);
+
+    const Point &getCenter() const;
 };
 #endif //RM_EMULATOR_CIRCLE_H
