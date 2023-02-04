@@ -1,6 +1,6 @@
-#include "Supply.h"
-#include "../utils/Value.h"
-#include "../shape/Line.h"
+#include "emulator/object/Supply.h"
+#include "emulator/utils/Value.h"
+#include "emulator/shape/Line.h"
 
 Supply::Supply(bool isRed) : isRed(isRed) {
     float sign = isRed ? 1 : -1;

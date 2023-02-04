@@ -1,0 +1,18 @@
+#ifndef RM_EMULATOR_BASE_H
+#define RM_EMULATOR_BASE_H
+
+#include "emulator/shape/Rectangle.h"
+
+class Base {
+private:
+    Rectangle region;
+    int hp;
+    bool isRed;
+public:
+    Base(){}
+    Base(bool isRed);
+
+    void render();
+};
+
+#endif //RM_EMULATOR_BASE_H

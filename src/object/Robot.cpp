@@ -1,7 +1,7 @@
-#include "Robot.h"
-#include "../shape/PolyLine.h"
-#include "../utils/Value.h"
-#include "../utils/Utils.h"
+#include "emulator/object/Robot.h"
+#include "emulator/shape/PolyLine.h"
+#include "emulator/utils/Value.h"
+#include "emulator/utils/Utils.h"
 #include <iostream>
 #include <iomanip>
 

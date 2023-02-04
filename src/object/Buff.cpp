@@ -1,6 +1,6 @@
-#include "Buff.h"
-#include "../utils/Value.h"
-#include "../shape/Line.h"
+#include "emulator/object/Buff.h"
+#include "emulator/utils/Value.h"
+#include "emulator/shape/Line.h"
 
 Buff::Buff() {
     this->outline = {Value::BUFF_SIZE, Value::BUFF_SIZE, {Value::BUFF_X, Value::BUFF_Y}, {0.7, 0.9, 0.8}};

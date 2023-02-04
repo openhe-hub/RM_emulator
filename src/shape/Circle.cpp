@@ -1,5 +1,5 @@
-#include "Circle.h"
-#include "../utils/Value.h"
+#include "emulator/shape/Circle.h"
+#include "emulator/utils/Value.h"
 #include <GL/glut.h>
 #include <cmath>
 

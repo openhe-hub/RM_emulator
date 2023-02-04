@@ -1,13 +1,13 @@
-#include "PlotManager.h"
-#include "../utils/Value.h"
-#include "../shape/Rectangle.h"
-#include "../shape/PolyLine.h"
-#include "../object/Buff.h"
-#include "../object/Start.h"
-#include "../object/Base.h"
-#include "../object/Supply.h"
-#include "../object/Robot.h"
-#include "../object/RobotManager.h"
+#include "emulator/plot/PlotManager.h"
+#include "emulator/utils/Value.h"
+#include "emulator/shape/Rectangle.h"
+#include "emulator/shape/PolyLine.h"
+#include "emulator/object/Buff.h"
+#include "emulator/object/Start.h"
+#include "emulator/object/Base.h"
+#include "emulator/object/Supply.h"
+#include "emulator/object/Robot.h"
+#include "emulator/object/RobotManager.h"
 #include <GL/freeglut.h>
 #include <iostream>
 

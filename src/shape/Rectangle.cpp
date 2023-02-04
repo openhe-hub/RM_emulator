@@ -1,5 +1,5 @@
-#include "Rectangle.h"
-#include "../utils/Value.h"
+#include "emulator/shape/Rectangle.h"
+#include "emulator/utils/Value.h"
 #include <GL/freeglut.h>
 #include <iostream>
 

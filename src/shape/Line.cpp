@@ -1,6 +1,6 @@
-#include "Line.h"
+#include "emulator/shape/Line.h"
 #include <GL/freeglut.h>
-#include "../utils/Value.h"
+#include "emulator/utils/Value.h"
 
 #include <utility>
 

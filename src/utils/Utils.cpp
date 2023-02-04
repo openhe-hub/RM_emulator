@@ -1,5 +1,5 @@
-#include "Utils.h"
-#include "Value.h"
+#include "emulator/utils/Utils.h"
+#include "emulator/utils/Value.h"
 
 int Utils::toId(RobotType type, RobotOwner owner) {
     return (owner == RobotOwner::OWNER_RED ? -1 : 2) +
@@ -8,4 +8,14 @@ int Utils::toId(RobotType type, RobotOwner owner) {
 
 float Utils::toPx(float meter) {
     return meter * Value::SCALE;
+}
+
+bool Utils::testCollision(Point point) {
+    float x = point.getX();
+    float y = point.getY();
+    if (x < -Value::MAP_WIDTH / 2 || x > Value::MAP_WIDTH ||
+        y < -Value::MAP_HEIGHT / 2 || y > Value::MAP_HEIGHT / 2) {
+        return false;
+    }
+    return true;
 }

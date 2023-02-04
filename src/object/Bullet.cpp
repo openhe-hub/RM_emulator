@@ -1,5 +1,5 @@
-#include "Bullet.h"
-#include "../utils/Value.h"
+#include "emulator/object/Bullet.h"
+#include "emulator/utils/Value.h"
 #include <cmath>
 
 void Bullet::addBullet(Point center, float theta) {

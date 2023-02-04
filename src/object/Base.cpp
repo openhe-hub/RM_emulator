@@ -1,6 +1,6 @@
-#include "Base.h"
-#include "../utils/Value.h"
-#include "../shape/Polygon.h"
+#include "emulator/object/Base.h"
+#include "emulator/utils/Value.h"
+#include "emulator/shape/Polygon.h"
 
 void Base::render() {
     region.render();

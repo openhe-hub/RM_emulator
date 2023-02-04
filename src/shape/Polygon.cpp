@@ -1,8 +1,8 @@
-#include "Polygon.h"
+#include "emulator/shape/Polygon.h"
 
 #include <utility>
 #include <GL/freeglut.h>
-#include "../utils/Value.h"
+#include "emulator/utils/Value.h"
 
 Polygon::Polygon(std::vector<Point> pts, Color3f color)
         : pts(std::move(pts)), color(std::move(color)) {}

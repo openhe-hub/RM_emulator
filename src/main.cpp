@@ -1,5 +1,5 @@
-#include "plot/PlotManager.h"
-#include "object/RobotManager.h"
+#include "emulator/plot/PlotManager.h"
+#include "emulator/object/RobotManager.h"
 #include <unistd.h>
 #include <thread>
 

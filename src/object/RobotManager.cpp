@@ -1,7 +1,7 @@
 #include <iostream>
 #include <GL/glut.h>
-#include "RobotManager.h"
-#include "../utils/Utils.h"
+#include "emulator/object/RobotManager.h"
+#include "emulator/utils/Utils.h"
 
 void RobotManager::initAll() {
     robots = {
@@ -66,6 +66,31 @@ void RobotManager::rotateRobotGun(RobotType type, RobotOwner owner, float theta)
 
 void RobotManager::fireRobot(RobotType type, RobotOwner owner) {
     int id = Utils::toId(type, owner);
+    std::pair<Point, float> fireInfo = robots[id].shot();
+    bullet.addBullet(fireInfo.first, fireInfo.second);
+}
+
+void RobotManager::updateRobot(int id, Point coordination) {
+    robots[id].moveTo({Utils::toPx(coordination.getX()), Utils::toPx(coordination.getY())});
+}
+
+void RobotManager::removeRobot(int id, RobotOwner owner) {
+    robots.erase(robots.begin() + id);
+}
+
+void RobotManager::moveRobot(int id, Point vec) {
+    robots[id].move({Utils::toPx(vec.getX()), Utils::toPx(vec.getY())});
+}
+
+void RobotManager::rotateRobotBody(int id, float theta) {
+    robots[id].rotateBody(theta);
+}
+
+void RobotManager::rotateRobotGun(int id, float theta) {
+    robots[id].rotateGun(theta);
+}
+
+void RobotManager::fireRobot(int id) {
     std::pair<Point, float> fireInfo = robots[id].shot();
     bullet.addBullet(fireInfo.first, fireInfo.second);
 }

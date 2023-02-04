@@ -1,8 +1,6 @@
-#include "Start.h"
-
-#include <utility>
-#include "../shape/Line.h"
-#include "../utils/Value.h"
+#include "emulator/object/Start.h"
+#include "emulator/shape/Line.h"
+#include "emulator/utils/Value.h"
 
 void Start::render() {
     float dx[8] = {0, 1, -1, 0, 0, -1, 1, 0};

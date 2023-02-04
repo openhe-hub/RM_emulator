@@ -1,4 +1,4 @@
-#include "Point.h"
+#include "emulator/shape/Point.h"
 #include <cmath>
 
 float Point::getX() const {
