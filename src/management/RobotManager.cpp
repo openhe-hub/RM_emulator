@@ -25,7 +25,7 @@ void RobotManager::renderAll() {
         robot.render();
     }
     // render bullets
-    bulletManager.render();
+    bulletManager.render(robots, redBase, blueBase);
     glutSwapBuffers();
 }
 
@@ -67,7 +67,7 @@ void RobotManager::rotateRobotGun(RobotType type, RobotOwner owner, float theta)
 void RobotManager::fireRobot(RobotType type, RobotOwner owner) {
     int id = Utils::toId(type, owner);
     std::pair<Point, float> fireInfo = robots[id].shot();
-    bulletManager.addBullet(fireInfo.first, fireInfo.second);
+    bulletManager.addBullet(fireInfo.first, fireInfo.second, robots[id].getOwner());
 }
 
 void RobotManager::updateRobot(int id, Point coordination) {
@@ -92,7 +92,15 @@ void RobotManager::rotateRobotGun(int id, float theta) {
 
 void RobotManager::fireRobot(int id) {
     std::pair<Point, float> fireInfo = robots[id].shot();
-    bulletManager.addBullet(fireInfo.first, fireInfo.second);
+    bulletManager.addBullet(fireInfo.first, fireInfo.second, robots[id].getOwner());
+}
+
+void RobotManager::lossHpRobot(RobotType type, RobotOwner owner, int deltaHp) {
+    robots[Utils::toId(type, owner)].updateHp(deltaHp);
+}
+
+void RobotManager::lossHpRobot(int id, int deltaHp) {
+    robots[id].updateHp(deltaHp);
 }
 
 

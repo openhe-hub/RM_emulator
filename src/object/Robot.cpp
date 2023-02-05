@@ -96,4 +96,16 @@ void Robot::info() {
     std::cout << std::endl;
 }
 
+void Robot::updateHp(int deltaHp) {
+    this->hp += deltaHp;
+}
+
+Point Robot::getCenter() {
+    return body.getCenter();
+}
+
+RobotOwner Robot::getOwner() {
+    return owner;
+}
+
 

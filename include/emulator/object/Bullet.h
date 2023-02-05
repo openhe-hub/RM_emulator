@@ -8,12 +8,11 @@
 class Bullet {
 private:
     Circle circle;
-//    RobotOwner owner;
-//    BulletType type;
+    RobotOwner owner;
     float theta;
     int attackValue;
 public:
-    Bullet(Point point, float theta);
+    Bullet(Point point, float theta,RobotOwner owner);
 
     void render();
 
@@ -22,6 +21,8 @@ public:
     float getTheta() const;
 
     Point getCenter();
+
+    RobotOwner getOwner();
 };
 
 #endif //RM_EMULATOR_BULLET_H

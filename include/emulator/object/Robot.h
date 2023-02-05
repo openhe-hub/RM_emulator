@@ -44,6 +44,12 @@ public:
     void moveTo(Point destination);
 
     void info();
+
+    void updateHp(int deltaHp);
+
+    Point getCenter();
+
+    RobotOwner getOwner();
 };
 
 #endif //RM_EMULATOR_ROBOT_H

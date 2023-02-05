@@ -13,10 +13,10 @@ int main(int argc, char *argv[]) {
         plotManager.emulate(argc, argv);
     });
     std::thread updateThread([&robotManager] {
-        robotManager.updateRobot(2, {5, 0});
-//        robotManager.rotateRobotGun(2, 1.1);
+        robotManager.updateRobot(2, {1, 1.6});
+        robotManager.rotateRobotGun(2, -0.2);
         while (true) {
-            robotManager.rotateRobotGun(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, 0.1);
+            robotManager.rotateRobotGun(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED, 0.05);
             robotManager.fireRobot(RobotType::TYPE_INFANTRY, RobotOwner::OWNER_RED);
             robotManager.reportAll();
             sleep(1);

@@ -50,9 +50,11 @@ public:
     constexpr static float DELTA_DIS = 1;
 
     // bullet
-    constexpr static float BULLET_RADIUS=3;
-    constexpr static float BULLET_VELOCITY=8;
-    constexpr static float TARGET_DIFF_DIS=5;
+    constexpr static float BULLET_RADIUS = 3;
+    constexpr static float BULLET_VELOCITY = 10;
+    constexpr static float TARGET_DIFF_DIS = 5;
+    constexpr static float ROBOT_TARGET_RADIUS = (SENTRY_WIDTH+SENTRY_HEIGHT)/2;
+    constexpr static int FAIL_CODE = -1;
 
     // display
     constexpr static float DISPLAY_X = 100.;

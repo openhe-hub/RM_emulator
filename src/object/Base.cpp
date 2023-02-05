@@ -22,4 +22,13 @@ void Base::render() {
 Base::Base(bool isRed) : isRed(isRed) {
     float sign = isRed ? 1 : -1;
     region = {Value::BASE_SIZE, Value::BASE_SIZE, {Value::BASE_X * sign, Value::BASE_Y * sign}, {0.3, 0.3, 0.3}};
+    owner = isRed ? RobotOwner::OWNER_RED : RobotOwner::OWNER_BLUE;
+}
+
+RobotOwner Base::getOwner() {
+    return owner;
+}
+
+void Base::updateHp(int deltaHp) {
+    hp += deltaHp;
 }

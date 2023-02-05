@@ -18,9 +18,11 @@ public:
 
     static bool isNearPoint(Point point, Point targetPoint);
 
+    static bool isNearPoint(Point point, Point targetPoint, float diffRadius);
+
     static bool isInRange(float x, float min, float max);
 
-    static bool testBulletOnTarget(Bullet bullet, std::vector<Robot> robots);
+    static int testBulletOnTarget(Bullet bullet, std::vector<Robot> robots);
 
     static bool testBulletOnBase(Bullet bullet, Base base);
 

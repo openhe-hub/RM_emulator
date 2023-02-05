@@ -40,6 +40,7 @@ public:
     void rotateRobotBody(RobotType type,RobotOwner owner, float theta);
     void rotateRobotGun(RobotType type,RobotOwner owner,float theta);
     void fireRobot(RobotType type,RobotOwner owner);
+    void lossHpRobot(RobotType type,RobotOwner owner,int deltaHp);
 
     void updateRobot(int id,Point coordination);
     void removeRobot(int id,RobotOwner owner);
@@ -47,5 +48,6 @@ public:
     void rotateRobotBody(int id, float theta);
     void rotateRobotGun(int id,float theta);
     void fireRobot(int id);
+    void lossHpRobot(int id,int deltaHp);
 };
 #endif //RM_EMULATOR_ROBOTMANAGER_H

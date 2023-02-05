@@ -1,7 +1,7 @@
 
 #include "emulator/object/Bullet.h"
 
-Bullet::Bullet(Point point, float theta) : theta(theta) {
+Bullet::Bullet(Point point, float theta,RobotOwner owner) : theta(theta),owner(owner) {
     circle = {Value::BULLET_RADIUS, point, {1, 1, 1}};
 }
 
@@ -19,5 +19,9 @@ float Bullet::getTheta() const {
 
 Point Bullet::getCenter() {
     return circle.getCenter();
+}
+
+RobotOwner Bullet::getOwner() {
+    return owner;
 }
 
