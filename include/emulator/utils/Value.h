@@ -55,6 +55,7 @@ public:
     constexpr static float TARGET_DIFF_DIS = 5;
     constexpr static float ROBOT_TARGET_RADIUS = (SENTRY_WIDTH+SENTRY_HEIGHT)/2;
     constexpr static int FAIL_CODE = -1;
+    constexpr static int ATTACK_VALUE=2;
 
     // display
     constexpr static float DISPLAY_X = 100.;

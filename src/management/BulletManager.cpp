@@ -16,16 +16,16 @@ void BulletManager::render(std::vector<Robot> &robots, Base &redBase, Base &blue
         int targetId = Utils::testBulletOnTarget(bullet, robots);
         if (targetId != Value::FAIL_CODE) {
             removeBullet(i);
-            robots[targetId].updateHp(-100);
+            robots[targetId].updateHp(-bullet.getAttackValue());
             break;
         }
         // test on target Base
         if (bullet.getOwner() == RobotOwner::OWNER_RED && Utils::testBulletOnBase(bullet, blueBase)) {
-            blueBase.updateHp(-100);
+            blueBase.updateHp(-bullet.getAttackValue());
             removeBullet(i);
             break;
         } else if (bullet.getOwner() == RobotOwner::OWNER_BLUE && Utils::testBulletOnBase(bullet, redBase)) {
-            redBase.updateHp(-100);
+            redBase.updateHp(-bullet.getAttackValue());
             removeBullet(i);
             break;
         }

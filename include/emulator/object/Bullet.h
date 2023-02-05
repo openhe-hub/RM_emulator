@@ -23,6 +23,8 @@ public:
     Point getCenter();
 
     RobotOwner getOwner();
+
+    int getAttackValue() const;
 };
 
 #endif //RM_EMULATOR_BULLET_H
