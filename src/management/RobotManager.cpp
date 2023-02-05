@@ -31,17 +31,20 @@ void RobotManager::renderAll() {
 
 void RobotManager::reportAll() {
     if (!isBegin) initAll();
-
+    // time info
     time(&curr);
     double diff = difftime(curr, start);
-    std::cout << "===================================[ " << diff
+    std::cout << "===================================[ t = " << diff
               << " s ]===================================================\n";
-    if (!isBegin) initAll();
+    // robot info
     for (auto &robot: robots) {
         robot.info();
     }
+    // base info
+    redBase.info();
+    blueBase.info();
     std::cout << "========================================================"
-                 "=====================================\n\n";
+                 "==========================================\n\n";
 }
 
 void RobotManager::updateRobot(RobotType type, RobotOwner owner, Point coordination) {
