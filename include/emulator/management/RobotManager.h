@@ -5,6 +5,7 @@
 #include "emulator/object/Base.h"
 #include "emulator/object/Buff.h"
 #include "emulator/object/Supply.h"
+#include "emulator/management/TimeManager.h"
 #include <ctime>
 
 class RobotManager{
@@ -14,11 +15,13 @@ private:
     Supply redSupply,blueSupply;
     Buff buff;
     Base redBase,blueBase;
-
     bool isBegin= false;
-    time_t start=0,curr=0;
+    TimeManager timeManager;
+
     RobotManager()=default;
     ~RobotManager()=default;
+
+    void upgradeAll();
 public:
     // industry mode
     static RobotManager& getInstance(){

@@ -1,6 +1,8 @@
 #ifndef RM_EMULATOR_VALUE_H
 #define RM_EMULATOR_VALUE_H
 
+#include <cstdint>
+
 class Value {
 public:
     // map
@@ -48,19 +50,37 @@ public:
     constexpr static float GUN_LENGTH = 40;
     constexpr static float GUN_WIDTH = 2;
     constexpr static float DELTA_DIS = 1;
+    constexpr static float INFANTRY_EXP_INCREMENT = 3.0;
+    const static int INFANTRY_EXP_LEVEL1 = 80;
+    const static int INFANTRY_EXP_LEVEL2 = 120;
+    constexpr static float HERO_EXP_INCREMENT = 6.0;
+    const static int HERO_EXP_LEVEL1 = 30;
+    const static int HERO_EXP_LEVEL2 = 60;
 
     // bullet
     constexpr static float BULLET_RADIUS = 3;
     constexpr static float BULLET_VELOCITY = 10;
     constexpr static float TARGET_DIFF_DIS = 5;
-    constexpr static float ROBOT_TARGET_RADIUS = (SENTRY_WIDTH+SENTRY_HEIGHT)/2;
+    constexpr static float ROBOT_TARGET_RADIUS = (SENTRY_WIDTH + SENTRY_HEIGHT) / 2;
     constexpr static int FAIL_CODE = -1;
-    constexpr static int ATTACK_VALUE=2;
+    constexpr static int ATTACK_VALUE = 2;
 
     // display
     constexpr static float DISPLAY_X = 100.;
     constexpr static float DISPLAY_Y = 100.;
     constexpr static long DURATION_TIME = 100000;
+
+    // time(in seconds)
+    constexpr static float TOTAL_TIME = 300;
+    const static uint8_t TIMER_STARTED = 0X01;
+    const static uint8_t TIMER_STOPPED = 0X02;
+    const static uint8_t TIMER_PAUSED = 0X03;
+
+    // command
+    const static uint8_t COMMAND_START = 0X01;
+    const static uint8_t COMMAND_PAUSE = 0x02;
+    const static uint8_t COMMAND_STOP = 0x03;
+    const static uint8_t COMMAND_RESTART = 0x04;
 };
 
 #endif //RM_EMULATOR_VALUE_H

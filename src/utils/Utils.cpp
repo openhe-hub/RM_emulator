@@ -101,7 +101,7 @@ bool Utils::isNearY(float y, float targetY) {
 }
 
 bool Utils::isNearPoint(Point point, Point targetPoint) {
-    isNearPoint(point, targetPoint, Value::TARGET_DIFF_DIS);
+    return isNearPoint(point, targetPoint, Value::TARGET_DIFF_DIS);
 }
 
 bool Utils::isNearPoint(Point point, Point targetPoint, float diffRadius) {

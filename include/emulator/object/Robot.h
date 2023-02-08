@@ -23,8 +23,7 @@ private:
     int hp;
     int exp;
     int level;
-//    int energy;
-//    int bulletCount;
+    bool isLive;
     float gunTheta, bodyTheta;
 public:
     Robot(){}
@@ -46,6 +45,8 @@ public:
     void info();
 
     void updateHp(int deltaHp);
+
+    void updateExp(int exp);
 
     Point getCenter();
 

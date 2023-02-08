@@ -29,8 +29,7 @@ Robot::Robot(RobotType type, RobotOwner owner, int id)
     const int ROBOT_HP[3] = {100, 150, 600}; // sentry
     hp = ROBOT_HP[static_cast<int>(type) - 1];
     // exp
-    const int ROBOT_EXP[3] = {25, 75, 75};
-    exp = ROBOT_EXP[static_cast<int>(type) - 1];
+    exp = 0;
     // level
     level = 1;
     // shape
@@ -38,6 +37,7 @@ Robot::Robot(RobotType type, RobotOwner owner, int id)
             color};
     gun = {Value::GUN_WIDTH, Value::GUN_LENGTH, {center.getX() + Value::GUN_LENGTH / 2 * sign, center.getY()},
            color};
+    isLive = true;
 }
 
 void Robot::render() {
@@ -106,6 +106,27 @@ Point Robot::getCenter() {
 
 RobotOwner Robot::getOwner() {
     return owner;
+}
+
+void Robot::updateExp(int exp) {
+    if (!isLive) return;
+    this->exp = exp;
+    switch (type) {
+        case RobotType::TYPE_SENTRY: {
+            // no level-up rules
+        }
+            return;
+        case RobotType::TYPE_INFANTRY: {
+            if (exp >= Value::INFANTRY_EXP_LEVEL1) level = 2;
+            if (exp >= Value::INFANTRY_EXP_LEVEL2) level = 3;
+        }
+            return;
+        case RobotType::TYPE_HERO: {
+            if (exp >= Value::HERO_EXP_LEVEL1) level = 2;
+            if (exp >= Value::HERO_EXP_LEVEL2) level = 3;
+        }
+            return;
+    }
 }
 
 

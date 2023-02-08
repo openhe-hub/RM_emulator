@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <GL/glut.h>
 #include "emulator/management/RobotManager.h"
 #include "emulator/utils/Utils.h"
@@ -15,11 +16,17 @@ void RobotManager::initAll() {
     redBase = {true}, blueBase = {false};
     redSupply = {true}, blueSupply = {false};
     isBegin = true;
-    time(&start);
+    timeManager.startMatchTimer();
+    std::cout << "RM Emulator(Provincial Map) Start!" << std::endl;
 }
 
 void RobotManager::renderAll() {
-    if (!isBegin) initAll();
+    if (!isBegin) {
+        std::cerr << "ERROR: need start command first!";
+        return;
+    }
+    // upgrade exp & level
+    upgradeAll();
     // render robots
     for (auto &robot: robots) {
         robot.render();
@@ -29,12 +36,24 @@ void RobotManager::renderAll() {
     glutSwapBuffers();
 }
 
+void RobotManager::upgradeAll() {
+    double diff = timeManager.getDiffSeconds();
+    int infantryExp = floor(diff / Value::INFANTRY_EXP_INCREMENT);
+    int heroExp = floor(diff / Value::HERO_EXP_INCREMENT);
+    robots[Utils::toId(RobotType::TYPE_INFANTRY,RobotOwner::OWNER_RED)].updateExp(infantryExp);
+    robots[Utils::toId(RobotType::TYPE_INFANTRY,RobotOwner::OWNER_BLUE)].updateExp(infantryExp);
+    robots[Utils::toId(RobotType::TYPE_HERO,RobotOwner::OWNER_RED)].updateExp(heroExp);
+    robots[Utils::toId(RobotType::TYPE_HERO,RobotOwner::OWNER_BLUE)].updateExp(heroExp);
+}
+
 void RobotManager::reportAll() {
-    if (!isBegin) initAll();
+    if (!isBegin) {
+        std::cerr << "ERROR: need start command first!";
+        return;
+    }
     // time info
-    time(&curr);
-    double diff = difftime(curr, start);
-    std::cout << "===================================[ t = " << diff
+    std::cout << "===================================[ t = "
+              << timeManager.getDiffSeconds()
               << " s ]===================================================\n";
     // robot info
     for (auto &robot: robots) {
@@ -105,6 +124,8 @@ void RobotManager::lossHpRobot(RobotType type, RobotOwner owner, int deltaHp) {
 void RobotManager::lossHpRobot(int id, int deltaHp) {
     robots[id].updateHp(deltaHp);
 }
+
+
 
 
 
