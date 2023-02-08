@@ -52,5 +52,7 @@ public:
     void rotateRobotGun(int id,float theta);
     void fireRobot(int id);
     void lossHpRobot(int id,int deltaHp);
+
+    bool getIsBegin();
 };
 #endif //RM_EMULATOR_ROBOTMANAGER_H

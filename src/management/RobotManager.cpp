@@ -5,6 +5,7 @@
 #include "emulator/utils/Utils.h"
 
 void RobotManager::initAll() {
+    if (isBegin) return;
     robots = {
             {RobotType::TYPE_SENTRY,   RobotOwner::OWNER_RED,  1},
             {RobotType::TYPE_HERO,     RobotOwner::OWNER_RED,  2},
@@ -33,7 +34,6 @@ void RobotManager::renderAll() {
     }
     // render bullets
     bulletManager.render(robots, redBase, blueBase);
-    glutSwapBuffers();
 }
 
 void RobotManager::upgradeAll() {
@@ -123,6 +123,10 @@ void RobotManager::lossHpRobot(RobotType type, RobotOwner owner, int deltaHp) {
 
 void RobotManager::lossHpRobot(int id, int deltaHp) {
     robots[id].updateHp(deltaHp);
+}
+
+bool RobotManager::getIsBegin() {
+    return isBegin;
 }
 
 
